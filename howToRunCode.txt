@@ -1,0 +1,13 @@
+Open arduino preferences
+
+Go to additional boards manager URLs
+
+Paste
+https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+
+Click ok -> apply
+
+Go back to home
+Tools->Boards->esp32->Adafruit Feather esp32 V2
+
+Code should be able to upload now
