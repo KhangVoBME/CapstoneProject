@@ -8,12 +8,12 @@ side not connected to 3v goes to a0 or any analog pin
 
 
 */
-int normal = 20; //0-20% threshold for normal pressure
-int infection = 50; //21-50% threshold for risk of infection
-int tdamage = 70; // 51-70% threshold for risk of tissue damage
+double normal = 20; //0-20% threshold for normal pressure
+double infection = 50; //21-50% threshold for risk of infection
+double tdamage = 70; // 51-70% threshold for risk of tissue damage
 int fsrPin = A0;
-int value = 0;
-int percent = 0;     // the FSR and 10K pulldown are connected to a0
+double value = 0;
+double percent = 0;     // the FSR and 10K pulldown are connected to a0
     // the analog reading from the FSR resistor divider
 
 unsigned long lastA = 0; //time from last alert
@@ -35,15 +35,15 @@ void loop() {
 
         }else if(percent <= infection && percent>= normal){ 
         Serial.println("Risk of Infection");
-        Serial.println("Pressure was off by");
-        Serial.print(normal-percent);
+        Serial.println("Pressure off by");
+        Serial.print(percent-normal);
         Serial.print("% at: ");
         showTime(currentTime);
 
         }else if(percent <= tdamage && percent>= infection){
         Serial.println("Risk of Tissue Damage");
-        Serial.println("Pressure was off by");
-        Serial.print(normal-percent);
+        Serial.println("Pressure off by");
+        Serial.print(percent-normal);
         Serial.print("% at: ");
         showTime(currentTime);
         }
@@ -51,6 +51,7 @@ void loop() {
             lastA = currentTime;
             sixH(currentTime); //calls to 6 hour threshold function
         }
+       delay(100);
      }
 
 void showTime(unsigned long currentTime) { // gets time to look right
@@ -73,15 +74,16 @@ void sixH(unsigned long currentTime){ //function to check every 6 hours
     Serial.println("Normal Range");
   } else if (percent <= infection && percent >= normal) {
     Serial.println("Risk of Infection");
-    Serial.print("Pressure was off by ");
-    Serial.print(normal - percent);
+    Serial.print("Pressure off by ");
+    Serial.print(percent-normal);
     Serial.print("% at:");
     showTime(currentTime);
   } else if (percent <= tdamage && percent >= infection) {
     Serial.println("Risk of Tissue Damage");
-    Serial.print("Pressure was off by ");
-    Serial.print(normal - percent);
+    Serial.print("Pressure off by ");
+    Serial.print(percent-normal);
     Serial.print("% at:");
     showTime(currentTime);
   }
+    delay(100);
 }
