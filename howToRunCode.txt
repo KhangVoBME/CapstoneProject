@@ -1,3 +1,9 @@
+Go to https://learn.adafruit.com/adafruit-esp32-feather-v2/arduino-ide-setup
+
+download CH34x USB driver
+
+---
+
 Open arduino preferences
 
 Go to additional boards manager URLs
@@ -8,6 +14,8 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 Click ok -> apply
 
 Go back to home
+
 Tools->Boards->esp32->Adafruit Feather esp32 V2
+Tools->Port->/dev/cu.wchusbserial575E0524051 Serial Port... (idk if its different on different computers)
 
 Code should be able to upload now
